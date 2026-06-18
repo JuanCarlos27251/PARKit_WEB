@@ -1,0 +1,292 @@
+/* ==============================================
+   PARKit — Estilos globales
+   Importa fuentes, define variables y todos los
+   componentes reutilizables del proyecto.
+   ============================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+/* ── Variables: modo claro (defecto) ─────────── */
+:root {
+    /* Colores de marca Salmón/Terracota */
+    --primario:        #e05d47;
+    --primario-oscuro: #bd4a36;
+    --primario-claro:  #fceae6;
+    --verde:           #22c55e;
+    --rojo:            #ef4444;
+    --naranja:         #f97316;
+    /* Fondos y superficies cálidas */
+    --fondo:        #fafafa;
+    --fondo-card:   #ffffff;
+    --fondo-header: rgb(245, 245, 245);
+    /* Bordes, texto y sombras */
+    --borde:       #e8e4e2;
+    --texto:       #1a1818;
+    --texto-suave: #736d6a;
+    --sombra:      0 4px 16px 0 rgba(224, 93, 71, 0.08);
+    /* Radios y tipografía */
+    --radio:      0.5rem;
+    --radio-lg:   1rem;
+    --radio-xl:   1.5rem;
+    --radio-pill: 9999px;
+    --fuente:      'DM Sans', sans-serif;
+    --fuente-mono: 'DM Mono', monospace;
+    --transicion: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* ── Variables: modo oscuro (Gris Carbón Cálido) */
+.dark {
+    --fondo:        #161413;
+    --fondo-card:   #1e1c1b;
+    --fondo-header: rgba(22, 20, 19, 0.85);
+    --borde:        #2c2827;
+    --texto:        #f2efe9;
+    --texto-suave:  #948d8a;
+    --sombra:       0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* ── Reset base ──────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html  { scroll-behavior: smooth; }
+a     { color: inherit; text-decoration: none; }
+img   { display: block; max-width: 100%; }
+button { cursor: pointer; font-family: var(--fuente); }
+
+/* ── Layout ──────────────────────────────────── */
+.layout-base {
+    font-family:            var(--fuente);
+    background-color:       var(--fondo);
+    color:                  var(--texto);
+    line-height:            1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height:             100vh;
+    display:                flex;
+    flex-direction:         column;
+    transition:             background-color var(--transicion), color var(--transicion);
+}
+
+.header-base {
+    position:         sticky;
+    top:              0;
+    z-index:          50;
+    background-color: var(--fondo-header);
+    backdrop-filter:  blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom:    1px solid var(--borde);
+    flex:             none;
+    transition:       background-color var(--transicion), border-color var(--transicion);
+}
+
+/* ── Card ────────────────────────────────────── */
+.card {
+    background-color: var(--fondo-card);
+    border:           1px solid var(--borde);
+    border-radius:    var(--radio-lg);
+    box-shadow:       var(--sombra);
+    transition:       transform var(--transicion), box-shadow var(--transicion);
+}
+.card:hover {
+    transform:  translateY(-4px);
+    box-shadow: 0 12px 30px rgba(224, 93, 71, 0.12); /* Resplandor salmón */
+}
+
+/* ── Inputs ──────────────────────────────────── */
+.input-base {
+    width:            100%;
+    padding:          0.625rem 1rem;
+    border-radius:    var(--radio);
+    border:           1px solid var(--borde);
+    background-color: transparent;
+    color:            var(--texto);
+    font-size:        0.875rem;
+    transition:       border-color var(--transicion), box-shadow var(--transicion);
+}
+.input-base:focus {
+    outline:    none;
+    border-color: var(--primario);
+    box-shadow: 0 0 0 2px rgba(19, 91, 236, 0.2);
+}
+.input-base::placeholder {
+    color:   var(--texto-suave);
+    opacity: 0.5;
+}
+.input-con-icono { padding-left: 2.5rem; }
+
+/* ── Iconos Material Symbols ─────────────────── */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+    user-select:    none;
+}
+.icono-relleno { font-variation-settings: 'FILL' 1; }
+
+/* ── Utilidades de color (CSS nativo) ────────── */
+/* Usar text-primario (Tailwind) o texto-primario (CSS) indistintamente;
+   ambas clases producen el mismo resultado. */
+.texto-suave,   .text-suave   { color: var(--texto-suave); }
+.texto-primario,    .text-primario    { color: var(--primario); }
+.texto-verde,   .text-verde   { color: var(--verde); }
+.texto-rojo,    .text-rojo    { color: var(--rojo); }
+.texto-naranja, .text-naranja { color: var(--naranja); }
+
+/* ── Botones ─────────────────────────────────── */
+.btn {
+    display:       inline-flex;
+    align-items:   center;
+    justify-content: center;
+    gap:           0.5rem;
+    padding:       0.75rem 1.5rem;
+    border-radius: var(--radio-pill);
+    font-size:     0.9375rem;
+    font-weight:   600;
+    border:        none;
+    transition:    var(--transicion);
+    white-space:   nowrap;
+}
+
+.btn-primario {
+    background: var(--primario);
+    color:      white;
+    box-shadow: 0 4px 14px rgba(224, 93, 71, 0.3);
+}
+.btn-primario:hover {
+    background: var(--primario-oscuro);
+    transform:  translateY(-2px);
+    box-shadow: 0 6px 20px rgba(224, 93, 71, 0.45);
+}
+.btn-contorno {
+    background: transparent;
+    color:      var(--primario);
+    border:     1.5px solid var(--primario);
+}
+.btn-contorno:hover { background: var(--primario-claro); }
+
+.btn-ghost { background: transparent; color: var(--texto); padding: 0.5rem 0.875rem; }
+.btn-ghost:hover { background: var(--borde); border-radius: var(--radio); }
+
+.btn-sm { padding: 0.5rem 1rem;  font-size: 0.875rem; }
+.btn-lg { padding: 1rem 2rem;    font-size: 1.0625rem; }
+
+/* ── Avatar del header (perfil, pagos, reservas) */
+.avatar-btn {
+    display:          inline-flex;
+    align-items:      center;
+    justify-content:  center;
+    width:            2.25rem;
+    height:           2.25rem;
+    border-radius:    var(--radio-pill);
+    background-color: var(--primario-claro);
+    color:            var(--primario);
+    font-weight:      700;
+    font-size:        0.9rem;
+    border:           1px solid var(--borde);
+    transition:       background-color var(--transicion);
+    cursor:           pointer;
+}
+.avatar-btn:hover { background-color: var(--primario); color: white; }
+
+/* ── Badges ──────────────────────────────────── */
+.badge {
+    display:       inline-flex;
+    align-items:   center;
+    gap:           0.25rem;
+    padding:       0.2rem 0.6rem;
+    border-radius: var(--radio-pill);
+    font-size:     0.75rem;
+    font-weight:   600;
+}
+
+.badge-verde   { background: #dcfce7; color: #166534; }
+.badge-rojo    { background: #fee2e2; color: #991b1b; }
+.badge-primario    { background: var(--primario-claro); color: var(--primario-oscuro); }
+.badge-naranja { background: #ffedd5; color: #9a3412; }
+
+.dark .badge-verde   { background: #14532d; color: #86efac; }
+.dark .badge-rojo    { background: #7f1d1d; color: #fca5a5; }
+.dark .badge-primario    { background: #1e3a8a; color: #93c5fd; }
+.dark .badge-naranja { background: #7c2d12; color: #fdba74; }
+
+/* ── Animaciones ─────────────────────────────── */
+.aparecer { animation: aparecer 0.4s var(--transicion) both; }
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Utilidades ──────────────────────────────── */
+.sin-scrollbar               { scrollbar-width: none; -ms-overflow-style: none; }
+.sin-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ── Toast ───────────────────────────────────── */
+#contenedor-toast {
+    position:       fixed;
+    top:            5.5rem; /* Esquina superior derecha, bajo el header */
+    right:          1.5rem;
+    z-index:        99999;
+    display:        flex;
+    flex-direction: column;
+    gap:            0.75rem;
+    pointer-events: none; /* Permite clics por debajo de la notificación invisible */
+}
+.toast {
+    position:       relative;
+    display:        flex;
+    align-items:    center;
+    gap:            0.75rem;
+    padding:        0.875rem 1.25rem;
+    background:     rgba(22, 20, 19, 0.85); /* Carbón translúcido */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border:         1px solid rgba(255, 255, 255, 0.1);
+    border-radius:  9999px; /* Forma de píldora */
+    box-shadow:     0 12px 36px rgba(0, 0, 0, 0.35);
+    color:          #f2efe9;
+    font-size:      0.85rem;
+    font-weight:    600;
+    min-width:      260px;
+    max-width:      380px;
+    overflow:       hidden; 
+    transform-origin: right center;
+    animation:      entrarToast 0.5s cubic-bezier(0.2, 1.2, 0.3, 1) forwards; /* Efecto rebote (Spring) */
+}
+/* Barra inferior luminosa */
+.toast::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    animation: barraProgreso 2s linear forwards; /* Exactamente 2 segundos */
+}
+/* Colores dinámicos */
+.toast-exito::after  { background: var(--verde); }
+.toast-error::after  { background: var(--rojo); }
+.toast-aviso::after  { background: var(--naranja); }
+.toast-info::after   { background: var(--primario); }
+.toast-exito .icono-toast  { color: var(--verde); }
+.toast-error .icono-toast  { color: var(--rojo); }
+.toast-aviso .icono-toast  { color: var(--naranja); }
+.toast-info .icono-toast   { color: var(--primario); }
+/* Animación Entrada (Rebote) */
+@keyframes entrarToast {
+    0%   { opacity: 0; transform: translateX(100%) scale(0.85); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+/* Animación Barra */
+@keyframes barraProgreso {
+    0%   { width: 100%; }
+    100% { width: 0%; }
+}
+/* Animación Salida Suave */
+.toast-saliendo {
+    animation: salirToast 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+@keyframes salirToast {
+    0%   { opacity: 1; transform: translateX(0) scale(1); }
+    100% { opacity: 0; transform: translateX(120%) scale(0.85); }
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 768px) { .solo-escritorio { display: none !important; } }
+@media (min-width: 769px) { .solo-movil      { display: none !important; } }
