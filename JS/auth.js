@@ -113,7 +113,7 @@ const AUTH = (() => {
     async function llamarAPI(url, cuerpo) {
         const respuesta = await fetch(url, {
             method:  'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
             body:    JSON.stringify(cuerpo),
         });
 
@@ -193,6 +193,7 @@ const AUTH = (() => {
         return {
             'Content-Type':  'application/json',
             'Authorization': `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
         };
     }
 
