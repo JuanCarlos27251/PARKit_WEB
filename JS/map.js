@@ -183,7 +183,9 @@ class ParkingMap {
 
     async cargarParkings() {
         try {
-            const resp = await fetch(`${this.API_BASE}/api/Parking`);
+            const resp = await fetch(`${this.API_BASE}/api/Parking`, {
+                headers: { 'ngrok-skip-browser-warning': 'true' } 
+            });
             if (resp.ok) {
                 this.parkings = await resp.json();
                 this.dibujarPinchosEnMapa();
