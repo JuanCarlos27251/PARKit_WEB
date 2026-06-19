@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) { window.mostrarToast('Error al procesar reservas', 'error'); }
     }
 
-    function renderFilaReservaUser(r) {
+        function renderFilaReservaUser(r) {
         const fecha = new Date(r.startTime).toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' });
         const cancelable = r.status !== 4 && r.status !== 3; 
 
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="px-4 py-3">${fecha}</td>
                 <td class="px-4 py-3 font-medium text-black">${r.parkingName}</td>
                 <td class="px-4 py-3 text-gray-500">${r.spotNumber || r.parkingSpotId}</td>
-                <td class="px-4 py-3"><span class="text-xs px-2 py-1 rounded-full border ${r.status === 4 ? 'border-red-200 text-red-600 bg-red-50' : 'border-blue-200 text-blue-600 bg-blue-50'}">${r.status === 4 ? 'Cancelada' : r.status === 2 ? 'Activa' : 'Confirmada'}</span></td>
+                <td class="px-4 py-3"><span class="text-xs px-2 py-1 rounded-full border ${r.status === 1 ? 'border-red-200 text-red-600 bg-red-50' : 'border-blue-200 text-blue-600 bg-blue-50'}">${r.status === 1 ? 'Cancelada' : r.status === 4 ? 'Confirmada' : r.status === 0 ? 'Activa' : 'Pendiente'}</span></td>
                 <td class="px-4 py-3 font-bold text-black">${r.totalAmount.toFixed(2)} €</td>
                 <td class="px-4 py-3 text-right">
                     ${cancelable ? `<button onclick="cancelarReserva(${r.id})" class="text-red-500 text-xs font-bold hover:underline">Cancelar</button>` : '-'}
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="px-4 py-3">${fecha}</td>
                 <td class="px-4 py-3 font-medium text-black">${nombreCliente}</td>
                 <td class="px-4 py-3 text-gray-500">${r.spotNumber || r.parkingSpotId}</td>
-                <td class="px-4 py-3"><span class="text-xs px-2 py-1 rounded-full border ${r.status === 4 ? 'border-red-200 text-red-600 bg-red-50' : 'border-blue-200 text-blue-600 bg-blue-50'}">${r.status === 4 ? 'Cancelada' : r.status === 2 ? 'Activa' : 'Confirmada'}</span></td>
+                <td class="px-4 py-3"><span class="text-xs px-2 py-1 rounded-full border ${r.status === 1 ? 'border-red-200 text-red-600 bg-red-50' : 'border-blue-200 text-blue-600 bg-blue-50'}">${r.status === 1 ? 'Cancelada' : r.status === 4 ? 'Confirmada' : r.status === 0 ? 'Activa' : 'Pendiente'}</span></td>
                 <td class="px-4 py-3 font-bold text-black">${r.totalAmount.toFixed(2)} €</td>
                 <td class="px-4 py-3 text-right">
                     ${cancelable ? `<button onclick="cancelarReserva(${r.id})" class="text-red-500 text-xs font-bold hover:underline">Cancelar</button>` : '-'}
