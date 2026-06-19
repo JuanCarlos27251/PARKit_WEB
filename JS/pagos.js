@@ -205,12 +205,16 @@
             
             const startLocal = new Date(start.getTime() - timezoneOffsetStart).toISOString().slice(0, -1);
             const endLocal = new Date(end.getTime() - timezoneOffsetEnd).toISOString().slice(0, -1);
+           const plazaLibre = parkingActivo.spots?.find(s => s.status === 0);
+            if (!plazaLibre) {
+                throw new Error("Lo sentimos, no quedan plazas libres en este parking ahora mismo.");
+            }
             const resCreada = await apiFetch(`${API}/api/Reservation`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', ...AUTH.cabecerasAuth() },
                 body: JSON.stringify({
                     userId: AUTH.obtenerUsuario().id,
-                    parkingSpotId: parkingActivo.spots?.[0]?.id,
+                    parkingSpotId: plazaLibre.id,
                     startTime: startLocal, // Usamos la hora de España
                     endTime: endLocal,     // Usamos la hora de España
                     carId: cocheSeleccionado.id,
